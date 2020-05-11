@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>edit</title>
+</head>
+
+<body>
+
+<h1>Editing Book</h1>
+  <% if @book.errors.any? %>
+    <div class="alert-warning">
+        <ul>
+              <% @book.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                  <p>error</p>
+              <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+<%= form_for(@book) do |f| %>
+
+    <div class="edit-title">
+	    <p>Title</p>
+        <%= f.text_field :title %>
+    </div>
+
+    <div class="edit-body">
+    <p>Body</p>
+    <%= f.text_area :body %>
+    </div>
+
+    <p class="update"><%= f.submit 'Update Book' %></p>
+
+    <p><%= link_to "Show", book_path %>  |  <%= link_to "Back", books_path %></p>
+<% end %>
+
+</body>
+</html>
